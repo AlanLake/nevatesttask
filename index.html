@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.js"
+      integrity="sha256-DrT5NfxfbHvMHux31Lkhxg42LY6of8TaYyK50jnxRnM="
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="/index.js" defer></script>
+    <title>Test task for Neva</title>
+  </head>
+  <body>
+    <div class="travel-options">
+    <select name="route" id="route" required>
+      <option default disabled selected="selected">Выберите маршрут</option>
+      <option value="из A в B">из A в B</option>
+      <option value="из B в A">из B в A</option>
+      <option value="из A в B и обратно в А" id="wayback-selector">
+        из A в B и обратно в А
+      </option>
+    </select>
+    <div id="timetable" class="disabled">
+      <label for="time">Выберите время</label>
+      <select name="time" id="time" required>
+        <option default disabled selected='selected'>Время отправления</option>
+        <option value="18:00(из A в B)">15:00(из A в B)</option>
+        <option value="18:30(из A в B)">15:30(из A в B)</option>
+        <option value="18:45(из A в B)">15:45(из A в B)</option>
+        <option value="19:00(из A в B)">16:00(из A в B)</option>
+        <option value="19:15(из A в B)">16:15(из A в B)</option>
+        <option value="21:00(из A в B)">18:00(из A в B)</option>
+        <option value="18:30(из B в A)">15:30(из B в A)</option>
+        <option value="18:45(из B в A)">15:45(из B в A)</option>
+        <option value="19:00(из B в A)">16:00(из B в A)</option>
+        <option value="19:15(из B в A)">16:15(из B в A)</option>
+        <option value="19:35(из B в A)">16:35(из B в A)</option>
+        <option value="21:50(из B в A)">18:50(из B в A)</option>
+        <option value="21:55(из B в A)">18:55(из B в A)</option>
+      </select>
+    </div>
+    <div class="wayback-selector disabled">
+      <select name="wayback-time" id="wayback-time">
+        <option value="18:30(из B в A)">15:30(из B в A)</option>
+        <option value="18:45(из B в A)">15:45(из B в A)</option>
+        <option value="19:00(из B в A)">16:00(из B в A)</option>
+        <option value="19:15(из B в A)">16:15(из B в A)</option>
+        <option value="19:35(из B в A)">16:35(из B в A)</option>
+        <option value="21:50(из B в A)">18:50(из B в A)</option>
+        <option value="21:55(из B в A)">18:55(из B в A)</option>
+      </select>
+    </div>
+    <div class="count"></div>
+    <label for="num">Количество билетов</label>
+    <input id="num" />
+    <button id='count'>Посчитать</button>
+    <p class="disabled" id='counter'></p>
+    </div>
+    </div>
+  </body>
+</html>
