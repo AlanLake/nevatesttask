@@ -2,12 +2,24 @@ $(`#route`).change(function () {
   $(`#timetable`).removeClass("disabled");
 });
 
-
 // добавление пути обратно при выборе билетов в обе стороны
 $(`#route`).change(function () {
-  $(`option:selected`).val() == "из A в B и обратно в А"
-    ? $(`.wayback-selector`).toggleClass("disabled")
-    : $(`.wayback-selector`).addClass("disabled");
+  if ($(`option:selected`).val() == "из A в B и обратно в А") {
+    $(`.wayback-selector`).toggleClass("disabled");
+    $(`#time option`)
+      .toArray()
+      .filter(function (option) {
+        if (
+          $(option)
+            .text()
+            .match(/\d+?:\d+\(из.A/)
+        ) {
+          $(option).prop("disabled", false);
+        } else {
+          $(option).prop("disabled", true);
+        }
+      });
+  }
 });
 
 // блокировка маршрутов из точки противоположной выбору пользователя
@@ -40,14 +52,12 @@ $(`#route`).change(function () {
             .match(/\d+?:\d+\(из.A/)
         ) {
           $(option).prop("disabled", true);
-        }
-        else{
+        } else {
           $(option).prop("disabled", false);
         }
       });
   }
 });
-
 
 const formatForMoment = function (idOfSelect) {
   return (newTime = `${new Date().getFullYear()}-${
@@ -122,7 +132,6 @@ const changeToClientsTime = function () {
 $("#time option").each(changeToClientsTime);
 $("#wayback-time option").each(changeToClientsTime);
 
-
 // блокировка маршрутов на которые пользователь не успеет
 $(`#route`).change(function () {
   if ($(`option:selected`).val() == "из A в B и обратно в А") {
@@ -145,15 +154,14 @@ $(`#route`).change(function () {
           const comparedVar = moment
             .utc(moment(comparingTime).diff(moment(departure)))
             .format("HH:mm");
-            console.log(moment.duration(comparedVar).asMinutes());
+          console.log(moment.duration(comparedVar).asMinutes());
           if (
             moment.duration(comparedVar).asMinutes() < 50 ||
             moment.duration(comparedVar).asMinutes() > 1000
           ) {
-            $(time).prop("disabled", true)
-          }
-          else{
-           $(time).prop("disabled", false);
+            $(time).prop("disabled", true);
+          } else {
+            $(time).prop("disabled", false);
           }
         });
     });
